@@ -201,7 +201,7 @@ export async function POST(request) {
 
     newBooking.availableServiceProviders.map(async (provider) => {
       const cleanUrl = await shortUrl(
-        `https://demo.yourserviceapp.in/service-provider/booking/${booking._id}`
+        `${process.env.PHONEPE_REDIRECT_URL}/service-provider/booking/${booking._id}`
       );
 
       const itemNames = booking.cartItems.map((item) => item.name).join(", ");
@@ -226,7 +226,7 @@ export async function POST(request) {
     // Sending SMS to User on creating booking
 
     const cleanUrl = await shortUrl(
-      `https://demo.yourserviceapp.in/user/bookings/${booking._id}`
+      `${process.env.PHONEPE_REDIRECT_URL}/user/bookings/${booking._id}`
     );
 
     const message = `Thank you, ${booking.fullname}. Your booked reservation ID: ${booking.bookingId} scheduled on ${booking.date} was successful! Track booking: ${cleanUrl} -- GHOSTING WEBTECH PRIVATE LIMITED`;

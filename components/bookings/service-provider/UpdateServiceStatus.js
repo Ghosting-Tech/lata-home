@@ -130,7 +130,7 @@ const UpdateServiceStatus = ({ selectedNewBooking, setSelectedNewBooking }) => {
       }
       toast.success(paymentResponse.data.message);
 
-      const serviceUrl = `https://demo.yourserviceapp.in/services/${selectedNewBooking.cartItems[0].serviceId}`;
+      const serviceUrl = `${process.env.PHONEPE_REDIRECT_URL}/services/${selectedNewBooking.cartItems[0].serviceId}`;
       const urlResponse = await axios.post("/api/short-url", {
         url: serviceUrl,
       });
@@ -169,7 +169,7 @@ const UpdateServiceStatus = ({ selectedNewBooking, setSelectedNewBooking }) => {
 
   return (
     <>
-      {!selectedNewBooking.completed &&
+      {!selectedNewBooking.completed && (
         <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col gap-4">
           <div className="md:text-xl sm:text-xl text-lg text-gray-500 font-normal flex justify-center gap-2">
             Complete the Service
@@ -212,7 +212,7 @@ const UpdateServiceStatus = ({ selectedNewBooking, setSelectedNewBooking }) => {
             Service Completed
           </Button>
         </div>
-      }
+      )}
     </>
   );
 };

@@ -109,7 +109,7 @@ export async function GET(req, { params }) {
         ).toFixed(2);
 
         const cleanUrl = await shortUrl(
-          `https://demo.yourserviceapp.in/user/bookings/${booking._id}`
+          `${process.env.PHONEPE_REDIRECT_URL}/user/bookings/${booking._id}`
         );
 
         const itemNames = booking.cartItems.map((item) => item.name).join(", ");
