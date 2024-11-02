@@ -7,7 +7,7 @@ const CallToAction = () => {
     <div className="flex flex-col items-center justify-center gap-6 bg-gray-100 py-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl bg-cover bg-center  ">
       <Link
         href={"/services"}
-        className="px-6 py-3 w-full outline transition-all duration-700 flex justify-center items-center rounded-md gap-1 hover:bg-gradient-to-r hover:from-transparent hover:to-transparent hover:text-blue-600 outline-none hover:outline-blue-600 hover:outline-2 bg-gradient-to-tr from-blue-400 to-blue-600 font-semibold text-white"
+        className="px-6 py-3 w-full outline transition-all duration-700 flex justify-center items-center rounded-md gap-1 hover:bg-gradient-to-r hover:from-transparent hover:to-transparent hover:text-teal-600 outline-none hover:outline-teal-600 hover:outline-2 bg-gradient-to-tr from-teal-400 to-teal-600 font-semibold text-white"
       >
         Book a Service »
       </Link>
@@ -18,7 +18,7 @@ const CallToAction = () => {
       </div>
       <Link
         href={"/become-service-provider"}
-        className="px-6 py-3 w-full  transition-all flex gap-1 items-center justify-center duration-700 rounded-md hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-600 hover:text-white outline outline-2 outline-blue-500 text-blue-500 font-semibold"
+        className="px-6 py-3 w-full  transition-all flex gap-1 items-center justify-center duration-700 rounded-md hover:bg-gradient-to-r hover:from-teal-400 hover:to-teal-600 hover:text-white outline outline-2 outline-teal-500 text-teal-500 font-semibold"
       >
         Become a service provider{" "}
         <span className="ml-2">

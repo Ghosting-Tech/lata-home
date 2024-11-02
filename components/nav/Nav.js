@@ -100,7 +100,7 @@ export default function Nav() {
   };
 
   return (
-    <div className="mx-auto max-w-full px-4 py-2 rounded-none shadow-none border-none bg-transparent z-50 bg-teal-300">
+    <div className="mx-auto max-w-full px-4 py-2 rounded-none shadow-none border-none  z-50 bg-teal-300">
       <div className="flex items-center justify-between text-blue-gray-900 bg-transparent">
         <Link
           href={"/"}
