@@ -67,10 +67,10 @@ const TopServices = ({ topServices }) => {
       }}
     >
       <div className="w-full flex flex-col justify-center items-center py-4 px-4">
-        <h1 className="font-julius lg:text-5xl md:text-4xl sm:text-3xl text-3xl text-center text-gray-700">
+        <h1 className="font-julius lg:text-5xl md:text-4xl sm:text-3xl text-3xl text-center text-teal-900">
           FOR ALL YOUR NEEDS WE PROVIDE
         </h1>
-        <h2 className="font-cookie w-full md:w-auto flex justify-center md:justify-start lg:text-6xl md:text-6xl sm:text-5xl text-5xl text-center text-blue-500">
+        <h2 className="font-cookie w-full md:w-auto flex justify-center md:justify-start lg:text-6xl md:text-6xl sm:text-5xl text-5xl text-center text-teal-500">
           Best Services
         </h2>
       </div>

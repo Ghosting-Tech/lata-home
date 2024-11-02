@@ -5,12 +5,12 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const VideoCarousel = () => {
   const videos = [
-    "/video/nur-video1.mp4",
-    "/video/nur-video2.mp4",
-    "/video/nur-video3.mp4",
-    "/video/nur-video1.mp4",
-    "/video/nur-video2.mp4",
-    "/video/nur-video3.mp4",
+    "/video/video-1.mp4",
+    "/video/video-2.mp4",
+    "/video/video-3.mp4",
+    "/video/video-1.mp4",
+    "/video/video-4.mp4",
+    "/video/video-3.mp4",
   ];
 
   const [isMobile, setIsMobile] = useState(false);
@@ -63,10 +63,10 @@ const VideoCarousel = () => {
   return (
     <div className="carousel-container relative">
       <div className="w-full flex flex-col justify-center items-center py-4 px-4">
-        <h1 className="font-julius lg:text-5xl md:text-4xl sm:text-3xl text-3xl text-center text-gray-700">
+        <h1 className="font-julius lg:text-5xl md:text-4xl sm:text-3xl text-3xl text-center text-teal-900">
           COMPLETE THE TASK WITH
         </h1>
-        <h2 className="font-cookie lg:text-6xl md:text-6xl sm:text-5xl text-4xl text-center text-blue-500">
+        <h2 className="font-cookie lg:text-6xl md:text-6xl sm:text-5xl text-4xl text-center text-teal-500">
           Experienced Professionals
         </h2>
       </div>
