@@ -20,9 +20,9 @@ const Footer = () => {
           <Image
             width={500}
             height={500}
-            className="cursor-pointer w-56 object-cover mb-4"
-            src="/logo/logo.svg"
-            alt="Profile image"
+            className="cursor-pointer w-28 object-cover mb-4"
+            src="/logo/latahome.webp"
+            alt="image"
           />{" "}
           <p className="mb-4">
             We&apos;re a leading agency specializing in providing customized
@@ -64,9 +64,19 @@ const Footer = () => {
               +91 9470017395
             </li>
             <li className="flex items-center gap-1">
-              <Image src={'/logo/ghosting.png'} width={100} height={100} className="w-8" alt="ghosting-tech" /> 
+              <Image
+                src={"/logo/ghosting.png"}
+                width={100}
+                height={100}
+                className="w-8"
+                alt="ghosting-tech"
+              />
               Powered by{" "}
-              <Link target="_blank" href={`https://ghosting.in/`} className="underline text-blue-700">
+              <Link
+                target="_blank"
+                href={`https://ghosting.in/`}
+                className="underline text-blue-700"
+              >
                 Ghosting Tech
               </Link>
             </li>

@@ -8,10 +8,10 @@ import ReduxProvider from "@/provider/ReduxProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Yourserviceapp",
-  description: "Find the best service at Yourserviceapp",
+  title: "Home cleaning services | Lata Home",
+  description: "Find the best service at latahome",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favico.ico",
   },
 };
 
