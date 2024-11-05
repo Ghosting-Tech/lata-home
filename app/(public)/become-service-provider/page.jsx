@@ -17,6 +17,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaInfoCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { toast } from "sonner";
 import location from "../../../state&city/location.json";
 const CreateServiceProvider = () => {
@@ -58,13 +59,8 @@ const CreateServiceProvider = () => {
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   useEffect(() => {
-    // Update cities whenever the selected state changes
     if (selectedState) {
-      setCities(location[selectedState]);
-      setInputData((prevData) => ({
-        ...prevData,
-        city: "", // Reset city when state changes
-      }));
+      setCities(location[selectedState] || []);
     } else {
       setCities([]);
     }
@@ -119,22 +115,6 @@ const CreateServiceProvider = () => {
     }
   };
 
-  const handleStateChange = (e) => {
-    const state = e; // Check if e.target exists; if not, use e directly
-    setSelectedState(state);
-    setInputData((prevData) => ({
-      ...prevData,
-      state: state,
-    }));
-  };
-
-  const handleCityChange = (e) => {
-    const city = e;
-    setInputData((prevData) => ({
-      ...prevData,
-      city: city,
-    }));
-  };
   const validateInputs = () => {
     console.log({ data: inputData });
     let isValid = true; // Track the validity of inputs
@@ -152,8 +132,8 @@ const CreateServiceProvider = () => {
       isValid = false;
       return;
     }
-    if (inputData.image.size >= 1000000) {
-      toast.error("Please upload the profile image less than 1Mb");
+    if (inputData.image.size >= 2000000) {
+      toast.error("Please upload the profile image less than 2Mb");
       isValid = false;
       return;
     }
@@ -177,13 +157,13 @@ const CreateServiceProvider = () => {
       isValid = false;
       return;
     }
-    if (inputData.id1.image.file.size >= 1000000) {
-      toast.error("Please upload the first id  image less than 1Mb");
+    if (inputData.id1.image.file.size >= 2000000) {
+      toast.error("Please upload the first id  image less than 2Mb");
       isValid = false;
       return;
     }
-    if (inputData.id2.image.file.size >= 1000000) {
-      toast.error("Please upload the second id image less than 1Mb");
+    if (inputData.id2.image.file.size >= 2000000) {
+      toast.error("Please upload the second id image less than 2Mb");
       isValid = false;
       return;
     }
@@ -556,180 +536,6 @@ const CreateServiceProvider = () => {
           </div>
         )}
       </Dialog>
-      {/* <div className="min-h-full flex justify-center mb-8">
-        <div className="flex w-full md:w-2/5 flex-col gap-5 items-center px-8 py-6 h-[85vh] no-scrollbar overflow-auto bg-white bg-opacity-75 border shadow-lg backdrop-blur-sm rounded-xl">
-          <div className="w-full flex flex-col items-center justify-center">
-            <h2 className="uppercase font-bold text-3xl font-julius text-blue-600">
-              Become a service provider
-            </h2>
-          </div>
-          <div className="w-full flex flex-col gap-4 justify-center">
-            <Input
-              label="Name"
-              color="indigo"
-              value={inputData.name}
-              maxLength={25}
-              onChange={(e) =>
-                setInputData({ ...inputData, name: e.target.value })
-              }
-            />
-            <Input
-              label="Phone Number"
-              color="indigo"
-              value={inputData.phoneNumber}
-              minLength={10}
-              maxLength={10}
-              onInput={(e) => {
-                e.target.value = e.target.value.replace(/\D/g, ""); // Only allows digits
-              }}
-              onChange={(e) =>
-                setInputData({ ...inputData, phoneNumber: e.target.value })
-              }
-            />
-            <Input
-              label="Email"
-              color="indigo"
-              type="email"
-              value={inputData.email}
-              onChange={(e) =>
-                setInputData({ ...inputData, email: e.target.value })
-              }
-            />
-            <Select
-              label="Gender"
-              color="indigo"
-              value={inputData.gender}
-              onChange={(e) => setInputData({ ...inputData, gender: e })}
-            >
-              <Option value="male">Male</Option>
-              <Option value="female">Female</Option>
-            </Select>
-            <div className="flex justify-between">
-              <Input
-                label="City"
-                color="indigo"
-                value={inputData.city}
-                onChange={(e) =>
-                  setInputData({ ...inputData, city: e.target.value })
-                }
-              />
-              <Input
-                label="State"
-                color="indigo"
-                value={inputData.city}
-                onChange={(e) =>
-                  setInputData({ ...inputData, city: e.target.value })
-                }
-              />
-            </div>
-            <Select label="1st Identification Proof">
-              <Option>Aadhar Card</Option>
-              <Option>PanCard</Option>
-              <Option>Driving License</Option>
-              <Option>Passport</Option>
-              <Option>Ration Card</Option>
-            </Select>
-            <div className="flex gap-2 cursor-pointer">
-              <label htmlFor="icon" className="text-nowrap">
-                Upload Documents
-              </label>
-              <input
-                className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                type="file"
-                id="icon"
-              />
-            </div>
-            <Select label="2nd Identification Proof">
-              <Option>Aadhar Card</Option>
-              <Option>PanCard</Option>
-              <Option>Driving License</Option>
-              <Option>Passport</Option>
-              <Option>Ration Card</Option>
-            </Select>
-            <div className="flex gap-2 cursor-pointer">
-              <label htmlFor="icon" className="text-nowrap">
-                Upload Documents
-              </label>
-              <input
-                className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                type="file"
-                id="icon"
-              />
-            </div>
-
-            <div className="flex items-center gap-2 relative">
-              <Input
-                label="Password"
-                color="indigo"
-                type={showPassword ? "text" : "password"}
-                minLength={10}
-                maxLength={25}
-                value={inputData.password}
-                onChange={(e) =>
-                  setInputData({ ...inputData, password: e.target.value })
-                }
-              />
-              <div
-                className="absolute right-14 top-2.5 p-0 cursor-pointer"
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? (
-                  <AiOutlineEye size={20} color="gray" />
-                ) : (
-                  <AiOutlineEyeInvisible size={20} color="gray" />
-                )}
-              </div>
-              <Tooltip
-                content="Password should be more than 10 characters long including letters and numbers"
-                placement="top-end"
-                className="origin-bottom-right"
-                animate={{
-                  mount: { scale: 1, y: -5 },
-                  unmount: { scale: 0, y: 0 },
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  className="h-8 w-8 cursor-pointer text-blue-gray-500"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
-                  />
-                </svg>
-              </Tooltip>
-            </div>
-            <div className="flex gap-2 cursor-pointer">
-              <label htmlFor="icon" className="text-nowrap">
-                Profile Image
-              </label>
-              <input
-                className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                type="file"
-                onChange={(e) =>
-                  setInputData({ ...inputData, image: e.target.files[0] })
-                }
-                id="icon"
-              />
-            </div>
-            <Button
-              // loading={uploadingLoading}
-              fullWidth
-              variant="gradient"
-              color="blue"
-              onClick={SendingOtp}
-              className="hover:scale-105 transition-all duration-700 flex items-center justify-center py-4 rounded-md shadow-2xl cursor-pointer text-white"
-            >
-              Verify Mobile Number
-            </Button>
-          </div>
-        </div>
-      </div> */}
       <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
         <Card className="w-full max-w-4xl">
           <CardBody className="flex flex-col gap-8">
@@ -778,34 +584,54 @@ const CreateServiceProvider = () => {
                   <Option value="male">Male</Option>
                   <Option value="female">Female</Option>
                 </Select>
-                <Select
-                  label="State"
-                  name="state"
-                  color="indigo"
-                  value={selectedState}
-                  onChange={handleStateChange}
-                  required
-                >
-                  {Object.keys(location).map((state) => (
-                    <Option key={state} value={state}>
-                      {state}
-                    </Option>
-                  ))}
-                </Select>
-                <Select
-                  label="City"
-                  name="city"
-                  color="indigo"
-                  value={inputData.city}
-                  onChange={handleCityChange}
-                  required
-                >
-                  {cities.map((city) => (
-                    <Option key={city} value={city}>
-                      {city}
-                    </Option>
-                  ))}
-                </Select>
+                <div className="relative w-full">
+                  <select
+                    className="appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out w-full"
+                    name="state"
+                    value={selectedState}
+                    onChange={(e) => {
+                      setSelectedState(e.target.value);
+                      setInputData({ ...inputData, state: e.target.value });
+                    }}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select State
+                    </option>
+                    {Object.keys(location).map((state) => (
+                      <option key={state} value={state}>
+                        {state}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <ChevronDownIcon className="h-4 w-4" />
+                  </div>
+                </div>
+
+                <div className="relative w-full">
+                  <select
+                    className="appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out w-full"
+                    name="city"
+                    value={inputData.city}
+                    onChange={(e) => {
+                      setInputData({ ...inputData, city: e.target.value });
+                    }}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select City
+                    </option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <ChevronDownIcon className="h-4 w-4" />
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -842,7 +668,7 @@ const CreateServiceProvider = () => {
                       className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded  bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden  file:border-solid file:border-inherit file:bg-neutral-100 file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "
                       type="file"
                       id="icon"
-                      accept=".jpeg, .jpg, .png, .pdf,"
+                      accept=".jpeg, .jpg, .png,"
                       onChange={handleid1Upload}
                     />
                   </div>
@@ -891,7 +717,7 @@ const CreateServiceProvider = () => {
                       type="file"
                       id="icon"
                       onChange={handleid2Upload}
-                      accept=".jpeg, .jpg, .png, .pdf,"
+                      accept=".jpeg, .jpg, .png,"
                     />
                   </div>
                 </div>

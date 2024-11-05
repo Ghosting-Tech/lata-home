@@ -69,7 +69,7 @@ const UserNavigation = ({ handleOpenLoginDialog }) => {
                 className="w-12 h-12 rounded-full object-cover cursor-pointer"
               />
             ) : (
-              <div className="w-12 h-12 rounded-full flex justify-center items-center font-junge bg-gray-400 cursor-pointer">
+              <div className="w-12 h-12 rounded-full flex justify-center items-center font-junge bg-white cursor-pointer">
                 {user.name && Array.from(user.name)[0].toUpperCase()}
               </div>
             )}
